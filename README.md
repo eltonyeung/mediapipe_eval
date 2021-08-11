@@ -20,5 +20,18 @@ pandas
 
 
 
-
+**kps (x, y)_rounded**
+- Nose (801, 629)
+- R_shoulder (725, 702)
+- L_shoulder (900, 742)
+- R_elbow (644, 571)
+- L_elbow (933, 894)
+- R_wrist (609, 427)
+- L_wrist (926,1030)
+- R_hip (747, 1041)
+- L_hip (859, 1046)
+- R_knee (738, 1277)
+- L_knee (877, 1271)
+- R_ankle (736, 1492)
+- L_ankle (864, 1494)
 
