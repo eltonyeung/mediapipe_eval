@@ -16,12 +16,14 @@ kps_result = pd.DataFrame([], columns=['idx', 'image_name', 'nose_x', 'nose_y', 
                                        'right_ankle_y', 'left_ankle_x', 'left_ankle_y'])
 
 ############################################### For static image input #################################################
+# configs and path directory
 src_folder = 'D:/SmartRehab/Data_Image/'
 SUBJECT_ID = sorted([sub_num for sub_num in os.listdir(src_folder)])
 Subject_num = 0                                                      # Decide to perform the loop on which subject here
 IMAGE_FILES = sorted([img_name for img_name in os.listdir(src_folder + SUBJECT_ID[Subject_num]) if isfile(os.path.join(src_folder + SUBJECT_ID[Subject_num], img_name))])
-
 annotated_output_path = 'D:/SmartRehab/Data_Image/' + SUBJECT_ID[Subject_num] + '/annotated/'
+kps_output_path = 'D:/SmartRehab/Data_Keypoints/' + SUBJECT_ID[Subject_num] + '_phone(mediapipe)_kps.xlsx'
+
 if not os.path.exists(annotated_output_path):
     os.makedirs(annotated_output_path)
 
@@ -125,8 +127,6 @@ with mp_pose.Pose(
 
 
 ################################################### For kps output #####################################################
-# set output path
-kps_output_path = 'D:/SmartRehab/Data_Keypoints/' + SUBJECT_ID[Subject_num] + '_phone(mediapipe)_kps.xlsx'
 # create excel writer object
 writer = pd.ExcelWriter(kps_output_path)
 # write dataframe to excel
