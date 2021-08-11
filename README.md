@@ -15,7 +15,7 @@ pandas
 
 
 **Sample input (still image)**
-
-
+![Sample frame 786](https://github.com/eltonyeung/mediapipe_eval/blob/main/00786.jpg)
 
 **Sample output (annotated image)**
+![Sample frame 786](https://github.com/eltonyeung/mediapipe_eval/blob/main/786.jpg)
