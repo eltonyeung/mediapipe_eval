@@ -14,8 +14,11 @@ pandas
 - line 24: kps_output_path -- path for outputting final kps excel sheet 
 
 
-**Sample input (still image)**
-![Sample frame 786](https://github.com/eltonyeung/mediapipe_eval/blob/main/00786.jpg | width=100)
+**Sample input (still image)**                |||||                    **Sample output (annotated image)**
 
-**Sample output (annotated image)**
-![Sample frame 786](https://github.com/eltonyeung/mediapipe_eval/blob/main/786.jpg | width=100)
+<img width="200" alt="portfolio_view" src="https://github.com/eltonyeung/mediapipe_eval/blob/main/00786.jpg">     <img width="200" alt="portfolio_view" src="https://github.com/eltonyeung/mediapipe_eval/blob/main/786.jpg">
+
+
+
+
+
