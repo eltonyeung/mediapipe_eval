@@ -4,6 +4,11 @@ import mediapipe as mp
 import os
 import pandas as pd
 import openpyxl
+import argparse
+
+parser = argparse.ArgumentParser(description='Run Mediapipe pose estimation and record kps coordinates ')
+parser.add_argument('-id','--id', help='Subject ID (Folder name from /Data_Image path)', required=True)
+args = vars(parser.parse_args())
 
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
@@ -17,22 +22,22 @@ kps_result = pd.DataFrame([], columns=['idx', 'image_name', 'nose_x', 'nose_y', 
 
 ############################################### For static image input #################################################
 # configs and path directory
-src_folder = 'D:/SmartRehab/Data_Image/'
-SUBJECT_ID = sorted([sub_num for sub_num in os.listdir(src_folder)])
-Subject_num = 0                                                      # Decide to perform the loop on which subject here
-IMAGE_FILES = sorted([img_name for img_name in os.listdir(src_folder + SUBJECT_ID[Subject_num]) if isfile(os.path.join(src_folder + SUBJECT_ID[Subject_num], img_name))])
-annotated_output_path = 'D:/SmartRehab/Data_Image/' + SUBJECT_ID[Subject_num] + '/annotated/'
-kps_output_path = 'D:/SmartRehab/Data_Keypoints/' + SUBJECT_ID[Subject_num] + '_phone(mediapipe)_kps.xlsx'
+src_folder = 'D:/SmartRehab/Data_Image/' + args['id'] +'/'
+# SUBJECT_ID = sorted([sub_num for sub_num in os.listdir(src_folder)])
+# Subject_num = 1                                                      # Decide to perform the loop on which subject here
+IMAGE_FILES = sorted([img_name for img_name in os.listdir(src_folder) if isfile(os.path.join(src_folder, img_name))])
+annotated_output_path = 'D:/SmartRehab/Data_Image/' + args['id'] + '/annotated/'
+kps_output_path = 'D:/SmartRehab/Data_Keypoints/' + args['id'] + '_phone(mediapipe)_kps.xlsx'
 
 if not os.path.exists(annotated_output_path):
     os.makedirs(annotated_output_path)
 
-print(f'========== Annotating subject: ' + SUBJECT_ID[Subject_num] + '==========')
+print(f'========== Annotating subject: [' + args['id'] + '] ==========')
 with mp_pose.Pose(
         static_image_mode=True,
         min_detection_confidence=0.5) as pose:
     for idx, file in enumerate(IMAGE_FILES):
-        image = cv2.imread(os.path.join(src_folder + SUBJECT_ID[Subject_num] + '/' + file))
+        image = cv2.imread(os.path.join(src_folder + file))
         image_height, image_width, _ = image.shape
         # Convert the BGR image to RGB before processing.
         results = pose.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
